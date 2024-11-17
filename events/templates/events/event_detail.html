@@ -1,0 +1,15 @@
+<h1>{{ event.name }}</h1>
+<p>{{ event.description }}</p>
+<p>Location: {{ event.location }}</p>
+<p>Start: {{ event.start_date }} | End: {{ event.end_date }}</p>
+
+<h2>Tickets</h2>
+<form method="POST" action="{% url 'purchase_ticket' event.id %}">
+    {% csrf_token %}
+    <select name="ticket_id">
+        {% for ticket in tickets %}
+            <option value="{{ ticket.id }}">{{ ticket.ticket_type }} - ${{ ticket.price }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>

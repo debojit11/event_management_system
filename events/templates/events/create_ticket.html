@@ -1,0 +1,7 @@
+<h1>Create Ticket for {{ event.name }}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="save_and_add_another">Save and Add Another</button>
+    <button type="submit" name="done">Done</button>
+</form>

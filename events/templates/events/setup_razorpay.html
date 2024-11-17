@@ -1,0 +1,11 @@
+<h1>Setup Razorpay Payment Integration for {{ event.name }}</h1>
+<p>Enter your Razorpay Payment Page URL to integrate payments for this event.</p>
+
+<form method="post">
+    {% csrf_token %}
+    
+    <label for="payment_page_url">Razorpay Payment Page URL:</label>
+    <input type="text" name="payment_page_url" value="{{ event.payment_page_url }}" required>
+
+    <button type="submit">Save</button>
+</form>

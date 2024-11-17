@@ -1,0 +1,13 @@
+<h1>Welcome to Event Manager</h1>
+<p>Discover and register for events, or create your own!</p>
+<nav>
+    <a href="{% url 'upcoming_events' %}">Upcoming Events</a>
+    <a href="{% url 'my_events' %}">My Events</a>
+    <a href="{% url 'create_event' %}">Create Event</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Log Out</a>
+    {% else %}
+        <a href="{% url 'login' %}">Sign In/Sign Up</a>
+    {% endif %}
+</nav>

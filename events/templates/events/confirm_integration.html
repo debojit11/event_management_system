@@ -1,0 +1,11 @@
+<h1>Confirm Integration</h1>
+<p>
+    Would you like to proceed with payment integration for your tickets?  
+    If your tickets don't require payments, choose "Proceed without payment integration."
+</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" name="without_payment">Proceed without Payment Integration</button>
+    <button type="submit" name="with_payment">Proceed with Payment Integration</button>
+</form>
