@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -131,8 +132,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-RAZORPAY_KEY_ID = 'rzp_test_zE5O8h2BjTFBuk'  # Replace with your Razorpay Key ID
-RAZORPAY_KEY_SECRET = 'xJqZ6zkZyS5w9BC52W3a5SI7'  # Replace with your Razorpay Key Secret
+RAZORPAY_KEY_ID = os.getenv('RAZORPAY_KEY_ID')  # Replace with your Razorpay Key ID
+RAZORPAY_KEY_SECRET = os.getenv('RAZORPAY_KEY_SECRET')  # Replace with your Razorpay Key Secret
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
@@ -142,6 +143,16 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'debojitchoudhury117@gmail.com'
-EMAIL_HOST_PASSWORD = 'Asd45690jkl@01'
-DEFAULT_FROM_EMAIL = 'your-email@gmail.com'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+
+
+
+env_path = Path(__file__).resolve().parent.parent / '.env'
+if env_path.exists():
+    with open(env_path) as f:
+        for line in f:
+            if line.strip() and not line.startswith('#'):  # Ignore empty lines and comments
+                key, value = line.strip().split('=', 1)
+                os.environ[key] = value

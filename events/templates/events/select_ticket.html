@@ -1,4 +1,4 @@
-<h2>Purchase Ticket for {{ ticket.event.name }}</h2>
+<h2>Purchase Ticket for {{ event.name }}</h2>
 
 <form method="POST" action="">
   {% csrf_token %}
@@ -8,7 +8,7 @@
     <label for="ticket_type">Select Ticket Type</label>
     <select name="ticket_type" id="ticket_type" required>
       {% for ticket in ticket_types %}
-      <option value="{{ ticket.id }}">{{ ticket.ticket_type }}</option>
+        <option value="{{ ticket.id }}">{{ ticket.ticket_type }}</option>
       {% endfor %}
     </select>
   </div>
@@ -29,5 +29,5 @@
     <input type="email" name="email" id="email" value="{{ user.email }}" readonly>
   </div>
 
-  <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+  <button type="submit" class="btn btn-primary">Proceed</button>
 </form>

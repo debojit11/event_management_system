@@ -14,7 +14,8 @@ urlpatterns = [
     # Event-related URLs
     path('events/', views.UpcomingEventsView.as_view(), name='upcoming_events'),
     path('event/<int:event_id>/', views.EventDetailView.as_view(), name='event_detail'),
-    path('purchase/<int:event_id>/', views.TicketPurchaseView.as_view(), name='purchase_ticket'),
+    path('<int:event_id>/ticket-select/', views.TicketSelectView.as_view(), name='ticket_select'),
+    path('<int:event_id>/proceed-to-payment/', views.TicketPaymentView.as_view(), name='proceed_to_payment'),
     path('my-events/', views.MyEventsView.as_view(), name='my_events'),
     path('create-event/', views.CreateEventView.as_view(), name='create_event'),
     path('events/<int:event_id>/create-ticket/', views.CreateTicketView.as_view(), name='create_ticket'),

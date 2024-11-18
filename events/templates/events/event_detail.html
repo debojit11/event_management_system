@@ -4,7 +4,7 @@
 <p>Start: {{ event.start_date }} | End: {{ event.end_date }}</p>
 
 <h2>Tickets</h2>
-<form method="POST" action="{% url 'purchase_ticket' event.id %}">
+<form method="POST" action="{% url 'ticket_select' event.id %}">
     {% csrf_token %}
     <select name="ticket_id">
         {% for ticket in tickets %}

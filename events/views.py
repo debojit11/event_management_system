@@ -56,12 +56,12 @@ class EventDetailView(LoginRequiredMixin, View):
         return render(request, 'events/event_detail.html', {'event': event, 'tickets': tickets})
 
 # Ticket Purchase View
-class TicketPurchaseView(View):
+class TicketSelectView(View):
     def get(self, request, event_id):
         event = get_object_or_404(Event, id=event_id)
         ticket_types = Ticket.objects.filter(event=event)
 
-        return render(request, 'events/purchase_ticket.html', {
+        return render(request, 'events/select_ticket.html', {
             'event': event,
             'ticket_types': ticket_types,
             'user': request.user,
@@ -69,17 +69,41 @@ class TicketPurchaseView(View):
 
     def post(self, request, event_id):
         event = get_object_or_404(Event, id=event_id)
-        ticket_id = request.POST.get('ticket_id')  # ticket_id from the form, not from the URL
+        ticket_id = request.POST.get('ticket_type')  # `ticket_type` from the dropdown in `purchase_ticket.html`
 
         # Validate the selected ticket type
         try:
             ticket = Ticket.objects.get(id=ticket_id, event=event)
         except Ticket.DoesNotExist:
             messages.error(request, "Invalid ticket type selected.")
-            return redirect('events:purchase_ticket', event_id=event_id)
+            return redirect('ticket_select', event_id=event_id)
 
-        # Redirect to the payment page for the selected ticket
-        return redirect(event.payment_page_url) 
+        # Store the ticket ID in the session for use in payment
+        request.session['selected_ticket_id'] = ticket.id
+
+        # Redirect to the payment page
+        return redirect('proceed_to_payment', event_id=event_id)
+
+class TicketPaymentView(View):
+    def get(self, request, event_id):
+        event = get_object_or_404(Event, id=event_id)
+        ticket_id = request.session.get('selected_ticket_id')
+
+        # Validate the ticket ID from the session
+        if not ticket_id:
+            messages.error(request, "No ticket selected. Please choose a ticket first.")
+            return redirect('events:ticket_select', event_id=event_id)
+
+        try:
+            ticket = Ticket.objects.get(id=ticket_id, event=event)
+        except Ticket.DoesNotExist:
+            messages.error(request, "Invalid ticket selected.")
+            return redirect('ticket_select', event_id=event_id)
+
+        # Redirect to the payment page
+        return redirect(event.payment_page_url)
+
+
 
 class MyEventsView(LoginRequiredMixin, View):
     login_url = '/login/'
@@ -150,11 +174,8 @@ class ConfirmIntegrationView(View):
     def post(self, request, event_id):
         event = get_object_or_404(Event, id=event_id, organizer=request.user)
 
-        if 'without_payment' in request.POST:
-            messages.info(request, "Proceeding without payment integration.")
-            return redirect('upcoming_events')
-
-        elif 'with_payment' in request.POST:
+        # Remove 'without_payment' option and only allow 'with_payment'
+        if 'with_payment' in request.POST:
             return redirect('setup_razorpay', event_id=event.id)
 
 
