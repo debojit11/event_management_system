@@ -94,6 +94,7 @@ class Attendee(models.Model):
     event = models.ForeignKey(Event, related_name='attendees', on_delete=models.CASCADE, help_text="The event the attendee has registered for.")
     ticket = models.ForeignKey(Ticket, related_name='attendees', on_delete=models.CASCADE, help_text="The ticket type the attendee has purchased.")
     created_at = models.DateTimeField(auto_now_add=True, help_text="Timestamp when the attendee registered.")
+    registration_status = models.BooleanField(default=False, help_text="Has the attendee's registration been confirmed?")
 
     def __str__(self):
         return f"{self.user.username} - {self.event.name} ({self.ticket.ticket_type})"

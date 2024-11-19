@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ attendee.event.name }} - Details</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-4">
+    <h1>{{ attendee.event.name }}</h1>
+    <p><strong>Date:</strong> {{ attendee.event.start_date }} to {{ attendee.event.end_date }}</p>
+    <p><strong>Location:</strong> {{ attendee.event.location }}</p>
+    <p><strong>Description:</strong> {{ attendee.event.description }}</p>
+    <p><strong>Speakers:</strong> {{ attendee.event.speakers }}</p>
+    <h2>Your Registration</h2>
+    <p><strong>Attendee Name:</strong> {{ attendee.user.first_name }} {{ attendee.user.last_name }}</p>
+    <p><strong>Email:</strong> {{ attendee.user.email }}</p>
+    <p><strong>Ticket Type:</strong> {{ attendee.ticket.ticket_type }}</p>
+    <p><strong>Price:</strong> ₹{{ attendee.ticket.price }}</p>
+    <p>
+      <strong>Status:</strong>
+      {% if attendee.registration_status %}
+        <span class="badge bg-success">Confirmed</span>
+      {% else %}
+        <span class="badge bg-warning">Pending</span>
+      {% endif %}
+    </p>
+    <a href="{% url 'download_ticket' attendee.id %}" class="btn btn-primary">Download Ticket as PDF</a>
+
+    <a href="{% url 'registered_events' %}" class="btn btn-secondary">Back to Registered Events</a>
+  </div>
+</body>
+</html>

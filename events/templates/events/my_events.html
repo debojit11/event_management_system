@@ -31,23 +31,9 @@
       color: white;
     }
 
-    input[type="radio"] {
-      display: none;
-    }
-
-    input[type="radio"]:checked + .tab-label {
-      background-color: #007bff;
-      color: white;
-    }
-
     .tab-content {
-      display: none;
       margin-top: 30px;
       text-align: center;
-    }
-
-    input[type="radio"]:checked + .tab-label + .tab-content {
-      display: block;
     }
   </style>
 </head>
@@ -55,63 +41,10 @@
   <div class="container">
     <h1 class="text-center mt-4">My Events</h1>
 
-    <!-- Tabs -->
+    <!-- Links to registered and created events -->
     <div class="tab-container">
-      <input type="radio" id="tab-registered" name="tab-control" checked>
-      <label class="tab-label" for="tab-registered">Events Registered</label>
-
-      <input type="radio" id="tab-created" name="tab-control">
-      <label class="tab-label" for="tab-created">Events Created</label>
+      <a href="{% url 'registered_events' %}" class="tab-label">Events Registered</a>
+      <a href="{% url 'created_events' %}" class="tab-label">Events Created</a>
     </div>
-
-    <!-- Tab Content -->
-    <div id="content-registered" class="tab-content">
-      <h2>Events Registered</h2>
-      <ul>
-        {% for attendee in registered_events %}
-        <li>
-          <strong>{{ attendee.ticket.event.name }}</strong> 
-          ({{ attendee.ticket.ticket_type }}) - ₹{{ attendee.ticket.price }}
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-
-    <div id="content-created" class="tab-content">
-      <h2>Events Created</h2>
-      <ul>
-        {% for event in created_events %}
-        <li>
-          <strong>{{ event.name }}</strong>
-          <ul>
-            <li>Attendees:</li>
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Email</th>
-                  <th>Ticket Type</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for ticket in event.tickets.all %}
-                  {% for attendee in ticket.attendee_set.all %}
-                  <tr>
-                    <td>{{ attendee.first_name }}</td>
-                    <td>{{ attendee.last_name }}</td>
-                    <td>{{ attendee.email }}</td>
-                    <td>{{ ticket.ticket_type }}</td>
-                  </tr>
-                  {% endfor %}
-                {% endfor %}
-              </tbody>
-            </table>
-          </ul>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
 </body>
 </html>
