@@ -1,7 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
 <h1>Create Ticket for {{ event.name }}</h1>
-<form method="post">
+<form method="post" class="card form-layout">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" name="save_and_add_another">Save and Add Another</button>
-    <button type="submit" name="done">Done</button>
+    <div class="card-body">
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}
+            <small class="form-text">{{ field.help_text }}</small>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <div class="button-group">
+            <button type="submit" name="save_and_add_another" class="btn-link-style">Save and Add Another</button>
+            <button type="submit" name="done" class="btn-link-style">Done</button>
+        </div>
+    </div>
 </form>
+{% endblock %}

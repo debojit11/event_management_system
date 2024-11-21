@@ -16,6 +16,32 @@
     </form>
 
     <a href="{% url 'delete_event' object.id %}" class="btn btn-danger">Delete Event</a>
+    <h2 class="mt-4">Tickets</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Ticket Type</th>
+            <th>Price</th>
+            <th>Available Quantity</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ticket in tickets %}
+          <tr>
+            <td>{{ ticket.ticket_type }}</td>
+            <td>₹{{ ticket.price }}</td>
+            <td>{{ ticket.quantity }}</td>
+            <td>
+              <a href="{% url 'delete_ticket' ticket.id %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <a href="{% url 'create_ticket' object.id %}" class="btn btn-primary mt-3">Add Ticket</a>
+
     
     <h2 class="mt-4">Attendees</h2>
     <table class="table table-bordered">
@@ -52,6 +78,7 @@
         {% endfor %}
       </tbody>
     </table>
+    <a href="{% url 'download_attendees' object.id %}" class="btn btn-primary mt-3">Download Attendee List</a>
   </div>
 </body>
 </html>

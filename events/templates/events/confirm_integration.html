@@ -1,10 +1,50 @@
-<h1>Confirm Integration</h1>
-<p>
-    You need to proceed with Razorpay Payment Page URL  
-    If not already created , please create a Razorpay Payment Page URL
-</p>
+{% extends 'base.html' %}
 
-<form method="post">
-    {% csrf_token %}
-    <button type="submit" name="with_payment">Proceed with Payment Integration</button>
-</form>
+{% block content %}
+    <div class="container">
+        <h1>Confirm Integration</h1>
+        <p>
+            You need to proceed with the Razorpay Payment Page URL integration.  
+            If you have not created one yet, please follow the steps below to create a Razorpay Payment Page.
+        </p>
+
+        <div class="overview">
+            <h3>How to Create a Razorpay Payment Page</h3>
+            <p>Follow these steps to create a Razorpay Payment Page for your event:</p>
+            <ol>
+                <li><strong>Log in to your Razorpay account</strong>. If you don’t have one, create an account at <a href="https://razorpay.com" target="_blank">razorpay.com</a> and complete your KYC.</li>
+                <li><strong>Navigate to the 'Payment Pages' section</strong> on your Razorpay dashboard.</li>
+                <li><strong>Create a new Payment Page</strong> and customize it for your event.</li>
+                <li><strong>Important Properties</strong> to set while creating the payment page:
+                    <ul>
+                        <li><strong>Page Title:</strong> Name your Page title and give the page a description of the event and tickets.</li>
+                        <li><strong>Create Tickets:</strong> If there are a limited number of tickets,click the price field, then Click the <strong>Item with Quantity</strong> option and give the name and price of the ticket. After that, click on the <strong>three dots</strong> to the right of the price and go to <strong>Advanced Options</strong> then click on Limited options in Units Available in stock,add the no. of tickets then below it, define the min and max number of tickets that can be purchased by a user in <strong>Quantity Limit per order</strong>. Preferably keep min as 0 and max as 1 if you want others to buy just one ticket. If you have more than one ticket, click on the <strong>price field</strong> below and repeate the same step with differernt name in the Price field.</li>
+                        <li><strong>Customer Fields:</strong> Ensure that the following fields are included for your payment form:
+                            <ul>
+                                <li>First Name</li>
+                                <li>Last Name</li>
+                                <li>Email</li>
+                                <li>Phone Number (optional)</li>
+                            </ul>
+                            <li> And to create these fields, click on the <strong>Input Field</strong></li>
+                        </li>
+                        <li><strong>Contact Us:</strong> Add your email and phone number in the <strong>Contact Us</strong> section</li>
+                        <li><strong>Redirect URL:</strong> Go to page settings on the top bar and check the <strong>Redirect to your website</strong>, after that a field will pop up where you will put the link/url of our site so that the user will automatically come to our website. <strong>Note</strong>: Remember not to give the link/url of this page but the link/url of the page when you first get into the site </li>
+                        <li><strong>Custom Message(Optional)</strong>: If you want to show a custom message after successful payment, check the <strong>Show custom message</strong> and then type the custom message into the field</li>
+                        <li><strong>Page Expiry(Optional)</strong>: If you want you could uncheck the ,<strong>No Expiry</strong> and a expiry date , after that date the usesr will not be able to access that page</li>
+                    </ul>
+                </li>
+                <li><strong>Payment Page Url:</strong> In the settings page, the top field <strong>URL of this page</strong> after the <strong>https://pages.razorpay.com/</strong>, you are allowed to write something, type in a comples combination of letters,numbers and special characters and save the page </li>
+                <li><strong>Save the Payment Page URL</strong> and copy it into the field in teh next page to integrate with your event.</li>
+            </ol>
+            <p>If you face any trouble during the setup, feel free to contact us at <strong><a href="mailto:debojitchoudhury7636@gmail.com">debojitchoudhury7636@gmail.com</a></strong> for assistance.</p>
+        </div>
+
+        <form method="post" class="form-container">
+            {% csrf_token %}
+            <div class="button-group">
+            <button type="submit" name="with_payment" class="btn btn-primary">Proceed with Payment Integration</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

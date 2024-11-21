@@ -1,9 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Sign In - Event Manager{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center mt-4">Sign In</h1>
+    
+    <!-- Signup Form -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary mt-3">Sign In</button>
+    </form>
+    <div class="mt-4">
+        <p>Don’t have an account? <a href="{% url 'signup' %}" class="btn-link-style">Sign up here</a>.</p>
+        <p><a href="{% url 'password_reset' %}" class="btn-link-style">Forgot Password?</a></p>
+    </div>
+</div>
+{% endblock %}
 
-<h1>Sign In</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
-<p>Don’t have an account? <a href="{% url 'signup' %}">Sign up here</a>.</p>
-<p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
+
+

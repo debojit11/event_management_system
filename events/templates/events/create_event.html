@@ -1,6 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
 <h1>Create an Event</h1>
-<form method="post">
+<form method="post" class="card form-layout">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create Event</button>
+    <div class="card-body">
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}
+            <small class="form-text">{{ field.help_text }}</small>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <div class="button-group">
+        <button type="submit" class="btn-link-style">Create Event</button>
+        </div>
+    </div>
 </form>
+{% endblock %}

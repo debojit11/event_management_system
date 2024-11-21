@@ -110,3 +110,8 @@ class Attendee(models.Model):
     @property
     def email(self):
         return self.user.email
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'event'], name='unique_user_event')
+        ]
