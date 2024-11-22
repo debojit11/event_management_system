@@ -1,15 +1,26 @@
-<h1>{{ event.name }}</h1>
-<p>{{ event.description }}</p>
-<p>Location: {{ event.location }}</p>
-<p>Start: {{ event.start_date }} | End: {{ event.end_date }}</p>
+{% extends 'base.html' %}
 
-<h2>Tickets</h2>
-<form method="POST" action="{% url 'ticket_select' event.id %}">
-    {% csrf_token %}
-    <select name="ticket_id">
-        {% for ticket in tickets %}
+{% block content %}
+  <div class="container mt-4">
+    <h1>{{ event.name }}</h1>
+    <p>{{ event.description }}</p>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+    <p><strong>Start:</strong> {{ event.start_date }} | <strong>End:</strong> {{ event.end_date }}</p>
+
+    <h2>Tickets</h2>
+    <form method="POST" action="{% url 'ticket_select' event.id %}" class="form-layout">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="ticket_id">Select Ticket:</label>
+        <select name="ticket_id" id="ticket_id" class="form-select">
+          {% for ticket in tickets %}
             <option value="{{ ticket.id }}">{{ ticket.ticket_type }} - ₹{{ ticket.price }}</option>
-        {% endfor %}
-    </select>
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="button-group">
+      <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

@@ -1,7 +1,15 @@
-<h2>Delete Ticket</h2>
-<p>Are you sure you want to delete the ticket "{{ object.ticket_type }}"?</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Yes, Delete</button>
-    <a href="{% url 'manage_event' object.event.id %}" class="btn btn-secondary">Cancel</a>
-</form>
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>Delete Ticket</h2>
+    <p>Are you sure you want to delete the ticket "{{ object.ticket_type }}"?</p>
+    <form method="post" class="form-layout">
+      {% csrf_token %}
+      <div class="button-group">
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="{% url 'manage_event' object.event.id %}" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}
