@@ -10,7 +10,7 @@ from django.views import View
 from django.views.generic import ListView, UpdateView, TemplateView, DeleteView
 from django.views.generic.edit import FormView
 from django.core.mail import send_mail
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.timezone import now
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
@@ -345,8 +345,13 @@ class CreatedEventsView(LoginRequiredMixin, View):
         # Events organized by the user (assuming the user is the event organizer)
         created_events = Event.objects.filter(organizer=user)
 
-        # Pass the created events to the template
-        context = {'created_events': created_events}
+        # Paginate events (10 events per page)
+        paginator = Paginator(created_events, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        # Pass the paginated events to the template
+        context = {'page_obj': page_obj}
         return render(request, 'events/created_events.html', context)
     
 class ManageEventView(LoginRequiredMixin, UpdateView):
@@ -366,7 +371,7 @@ class ManageEventView(LoginRequiredMixin, UpdateView):
 class DeleteEventView(LoginRequiredMixin, DeleteView):
     model = Event
     template_name = 'events/delete_event.html'
-    success_url = '/my_events/'  # Redirect back to 'My Events' after deletion
+    success_url = '/my-events/'  # Redirect back to 'My Events' after deletion
 
     def get_queryset(self):
         # Ensure that only the organizer can delete their events

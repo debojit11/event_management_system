@@ -1,84 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage Event</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body>
-  <div class="container">
-    <h1 class="text-center mt-4">Manage Event Details</h1>
-    <form method="post" class="mb-4">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn btn-success">Save Changes</button>
-    </form>
+{% extends 'base.html' %}
 
-    <a href="{% url 'delete_event' object.id %}" class="btn btn-danger">Delete Event</a>
-    <h2 class="mt-4">Tickets</h2>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Ticket Type</th>
-            <th>Price</th>
-            <th>Available Quantity</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for ticket in tickets %}
-          <tr>
-            <td>{{ ticket.ticket_type }}</td>
-            <td>₹{{ ticket.price }}</td>
-            <td>{{ ticket.quantity }}</td>
-            <td>
-              <a href="{% url 'delete_ticket' ticket.id %}" class="btn btn-sm btn-danger">Delete</a>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+{% block title %}Manage Event{% endblock %}
 
-      <a href="{% url 'create_ticket' object.id %}" class="btn btn-primary mt-3">Add Ticket</a>
+{% block content %}
+<div class="container">
+  <h1 class="text-center mt-4">Manage Event Details</h1>
+  
+  <div class="row">
+    <!-- Event Details Card -->
+    <div class="col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Event Details</h5>
+          <form method="post" class="mb-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="button-group">
+              <button type="submit">Save Changes</button>
+              <a href="{% url 'delete_event' object.id %}" class="btn btn-danger">Delete Event</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
-    
-    <h2 class="mt-4">Attendees</h2>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Ticket Type</th>
-          <th>Payment Confirmed</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for attendee in attendees %}
-        <tr>
-          <td>{{ attendee.first_name }}</td>
-          <td>{{ attendee.last_name }}</td>
-          <td>{{ attendee.email }}</td>
-          <td>{{ attendee.ticket.ticket_type }}</td>
-          <td>
-            {% if attendee.registration_status %}
-            ✅
-            {% else %}
-            ❌
-            {% endif %}
-          </td>
-          <td>
-            {% if not attendee.registration_status %}
-            <a href="{% url 'confirm_registration' attendee.id %}" class="btn btn-sm btn-success">Confirm</a>
-            {% endif %}
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <a href="{% url 'download_attendees' object.id %}" class="btn btn-primary mt-3">Download Attendee List</a>
+    <!-- Tickets Card -->
+    <div class="col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Tickets</h5>
+          <table class="table table-bordered table-sm">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ticket in tickets %}
+              <tr>
+                <td>{{ ticket.ticket_type }}</td>
+                <td>₹{{ ticket.price }}</td>
+                <td>{{ ticket.quantity }}</td>
+                <td>
+                  <a href="{% url 'delete_ticket' ticket.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="button-group">
+            <a href="{% url 'create_ticket' object.id %}" class="btn btn-primary">Add Ticket</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Attendees Card -->
+    <div class="col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Attendees</h5>
+          <table class="table table-bordered table-sm">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Ticket Type</th>
+                <th>Confirmed</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for attendee in attendees %}
+              <tr>
+                <td>{{ attendee.first_name }} {{ attendee.last_name }}</td>
+                <td>{{ attendee.email }}</td>
+                <td>{{ attendee.ticket.ticket_type }}</td>
+                <td>
+                  {% if attendee.registration_status %}
+                  ✅
+                  {% else %}
+                  ❌
+                  {% endif %}
+                </td>
+                <td>
+                  {% if not attendee.registration_status %}
+                  <a href="{% url 'confirm_registration' attendee.id %}" class="btn btn-success btn-sm">Confirm</a>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="button-group">
+            <a href="{% url 'download_attendees' object.id %}" class="btn btn-primary">Download List</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</body>
-</html>
+</div>
+{% endblock %}

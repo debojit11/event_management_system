@@ -123,17 +123,6 @@ header nav {
     padding: 15px;
     font-size: 1.1em;
 }
-
-.transparent-textarea {
-    background-color: transparent;
-    color: white; /* Ensures the text is visible on a dark background */
-    border: 1px solid white; /* Optional: white border for visibility */
-    border-radius: 5px; /* Smooth edges */
-    padding: 10px; /* Adds spacing inside the textarea */
-    outline: none; /* Removes the default blue outline on focus */
-    resize: none; /* Prevents resizing of the textarea */
-}
-
 .transparent-textarea::placeholder {
     color: rgba(255, 255, 255, 0.7); /* Placeholder text with semi-transparency */
 }

@@ -1,23 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Created Events</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body>
-  <div class="container">
-    <h1 class="text-center mt-4">Events Created</h1>
-    <ul>
-      {% for event in created_events %}
-      <li>
-        <form method="get" action="{% url 'manage_event' event.id %}">
-          <button class="btn btn-primary mb-3">{{ event.name }}</button>
-        </form>
-      </li>
-      {% endfor %}
-    </ul>
+{% extends 'base.html' %}
+
+{% block title %}Created Events{% endblock %}
+
+{% block content %}
+<h1 class="text-center mt-4">Events Created</h1>
+
+<div class="container mt-4">
+  <div class="row">
+    {% for event in page_obj.object_list %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ event.name }}</h5>
+          <p class="card-text">
+            {{ event.description|truncatechars:100 }} <!-- Truncate description to 100 chars -->
+          </p>
+          <p class="card-text"><strong>Location:</strong> {{ event.location }}</p>
+          <a href="{% url 'manage_event' event.id %}" class="btn btn-primary btn-link-style">Manage Event</a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-center">No events created yet.</p>
+    {% endfor %}
   </div>
-</body>
-</html>
+
+  <!-- Pagination Controls -->
+  <div class="pagination" style="margin-top: 20px; display: flex; justify-content: center; gap: 10px;">
+    {% if page_obj.has_previous %}
+    <a href="?page=1" class="btn btn-secondary">&laquo; First</a>
+    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary">&lsaquo; Previous</a>
+    {% endif %}
+
+    <span class="btn btn-light">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary">Next &rsaquo;</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-secondary">Last &raquo;</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
