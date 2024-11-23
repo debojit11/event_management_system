@@ -58,17 +58,16 @@ class AttendeeViewSet(viewsets.ModelViewSet):
 class TicketViewSet(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
-    permission_classes = [IsAuthenticated, IsOrganizerOrReadOnly]  # Ensure the user is authenticated and only the organizer can edit tickets
+    permission_classes = [IsAuthenticated, IsOrganizerOrReadOnly]
 
     def get_queryset(self):
-        # Filter tickets to only show those related to the events the user can view
         if self.request.user.is_authenticated:
             return Ticket.objects.filter(event__organizer=self.request.user)
         return Ticket.objects.none()
 
     def perform_create(self, serializer):
-        # Ensure the user is the organizer of the related event when creating a ticket
         event = serializer.validated_data.get('event')
         if event.organizer != self.request.user:
             raise PermissionError("You are not allowed to create tickets for this event.")
         serializer.save()
+
