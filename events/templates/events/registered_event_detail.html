@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="mb-4">
+  <a href="{% url 'registered_events' %}" class="btn btn-secondary btn-link-style" style="position: absolute; top: 65px; left: 270px; padding: 10px 20px; text-decoration: none; color: white; background-color: #6c757d; border-radius: 5px; border: none;">
+    &larr; Back to Registered Events
+  </a>
+</div>
   <div class="container mt-4">
     <h1>{{ attendee.event.name }} - Details</h1>
 

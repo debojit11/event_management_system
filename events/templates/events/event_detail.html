@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="mb-4">
+  <a href="{% url 'upcoming_events' %}" class="btn btn-secondary btn-link-style" style="position: absolute; top: 65px; left: 1250px; padding: 10px 20px; text-decoration: none; color: white; background-color: #6c757d; border-radius: 5px; border: none;">
+    &larr; Back to Upcoming Events
+  </a>
+</div>
   <div class="container mt-4">
+      
     <h1>{{ event.name }}</h1>
     <p>{{ event.description }}</p>
     <p><strong>Location:</strong> {{ event.location }}</p>

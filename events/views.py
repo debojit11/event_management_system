@@ -505,7 +505,7 @@ class CustomPasswordResetDoneView(PasswordResetDoneView):
 
 # Password reset confirm view
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
-    template_name = 'registration/password_reset_confirm.html'  # You will create this template
+    template_name = 'registration/password_reset_confirm.html'
     success_url = '/reset/done/'  # Redirect after resetting the password
 
 # Password reset complete view

@@ -12,8 +12,9 @@ class EventForm(forms.ModelForm):
             'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'end_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'name': forms.TextInput(attrs={
-                'class': 'transparent-field',
+                'class': 'transparent-textarea',
                 'placeholder': 'Enter event name',
+                'style': 'background-color: transparent'
             }),
             'description': forms.Textarea(attrs={
                 'class': 'transparent-textarea',
@@ -21,20 +22,24 @@ class EventForm(forms.ModelForm):
                 'style': 'background-color: transparent'
             }),
             'location': forms.TextInput(attrs={
-                'class': 'transparent-field',
+                'class': 'transparent-textarea',
                 'placeholder': 'Enter event location',
+                'style': 'background-color: transparent'
             }),
             'start_date': forms.DateTimeInput(attrs={
                 'type': 'datetime-local',
-                'class': 'transparent-field',
+                'class': 'transparent-textarea',
+                'style': 'background-color: transparent'
             }),
             'end_date': forms.DateTimeInput(attrs={
                 'type': 'datetime-local',
-                'class': 'transparent-field',
+                'class': 'transparent-textarea',
+                'style': 'background-color: transparent'
             }),
             'speakers': forms.TextInput(attrs={
-                'class': 'transparent-field',
+                'class': 'transparent-textarea',
                 'placeholder': 'Enter speakers (comma-separated)',
+                'style': 'background-color: transparent'
             }),
         }
 
@@ -65,6 +70,7 @@ class CustomUserCreationForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'class': 'transparent-textarea',
             'placeholder': 'First Name',
+            'style': 'background-color: transparent'
         })
     )
     last_name = forms.CharField(
@@ -73,6 +79,7 @@ class CustomUserCreationForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'class': 'form-control transparent-textarea',
             'placeholder': 'Last Name',
+            'style': 'background-color: transparent'
         })
     )
     email = forms.EmailField(
@@ -80,6 +87,7 @@ class CustomUserCreationForm(forms.ModelForm):
         widget=forms.EmailInput(attrs={
             'class': 'form-control transparent-textarea',
             'placeholder': 'Email Address',
+            'style': 'background-color: transparent'
         })
     )
     password1 = forms.CharField(
@@ -87,6 +95,7 @@ class CustomUserCreationForm(forms.ModelForm):
         widget=forms.PasswordInput(attrs={
             'class': 'form-control transparent-textarea',
             'placeholder': 'Password',
+            'style': 'background-color: transparent'
         }),
         min_length=8,
         help_text="Password must be at least 8 characters long."
@@ -96,6 +105,7 @@ class CustomUserCreationForm(forms.ModelForm):
         widget=forms.PasswordInput(attrs={
             'class': 'form-control transparent-textarea',
             'placeholder': 'Confirm Password',
+            'style': 'background-color: transparent'
         }),
         min_length=8
     )
@@ -107,6 +117,7 @@ class CustomUserCreationForm(forms.ModelForm):
             'username': forms.TextInput(attrs={
                 'class': 'transparent-textarea',
                 'placeholder': 'Username',
+                'style': 'background-color: transparent'
             }),
         }
         help_texts = {

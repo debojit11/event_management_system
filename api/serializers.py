@@ -38,7 +38,6 @@ class AttendeeSerializer(serializers.ModelSerializer):
         ]
 
 
-
 class TicketSerializer(serializers.ModelSerializer):
     event_name = serializers.ReadOnlyField(source='event.name')
     organizer_name = serializers.ReadOnlyField(source='event.organizer.username')
