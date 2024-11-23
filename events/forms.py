@@ -18,6 +18,7 @@ class EventForm(forms.ModelForm):
             'description': forms.Textarea(attrs={
                 'class': 'transparent-textarea',
                 'placeholder': 'Enter event description',
+                'style': 'background-color: transparent'
             }),
             'location': forms.TextInput(attrs={
                 'class': 'transparent-field',

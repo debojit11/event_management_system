@@ -269,3 +269,6 @@ textarea:focus {
     background-color: white;  /* Changes background to white when hovered */
     color: black;  /* Changes text color to black */
 }
+#id_description{
+    background-color: transparent;
+}
