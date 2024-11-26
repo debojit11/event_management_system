@@ -16,17 +16,18 @@ import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+env = environ.Env()
+environ.Env.read_env()  # Reads .env file
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-k+@d+=qsqqn@4q!(q987y6az%5^o2f$_=9zc7m9e-%76soo+2t'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['eventmanagement.site', 'www.eventmanagement.site']
 
 
 # Application definition
@@ -86,10 +87,15 @@ WSGI_APPLICATION = 'event_manager.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': 'localhost',  # or use the public IP of your Azure VM if it's remote
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
@@ -127,6 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -135,8 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-env = environ.Env()
-environ.Env.read_env()  # Reads .env file
+
 
 RAZORPAY_KEY_ID = env('RAZORPAY_KEY_ID')  # Replace with your Razorpay Key ID
 RAZORPAY_KEY_SECRET = env('RAZORPAY_KEY_SECRET')  # Replace with your Razorpay Key Secret
