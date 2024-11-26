@@ -1,6 +1,6 @@
 # Event Management System
 
-[Live Site](https://eventmanagement.site/)
+[Live Site](https://eventmanagement.site/) - This is a live link to the site deployed
 
 ## Overview
 The **Event Management System** simplifies the organization and attendance of events, conferences, and gatherings. Designed for both organizers and attendees, it includes features for event creation, ticketing, and scheduling.
