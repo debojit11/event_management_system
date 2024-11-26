@@ -106,7 +106,7 @@ The application is deployed on an Azure VM running Ubuntu 22.04 LTS server. The 
 ---
 
 ## License 
-This project is licensed under the MIT License. While you are free to use, copy, and modify the project, direct modifications to this repository are restricted. Please fork the repository and create a pull request if you wish to contribute changes. 
+This project is licensed under the MIT License. While you are free to use, copy, and modify the project on your own, direct modifications to this repository are not permitted
 
 MIT License 
 
