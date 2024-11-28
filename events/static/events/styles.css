@@ -272,3 +272,36 @@ textarea:focus {
 #id_description{
     background-color: transparent;
 }
+@media (max-width: 768px) {
+    /* Sidebar adjustments */
+    .sidebar {
+        width: 100%; /* Full width on smaller screens */
+        position: relative; /* Ensure proper positioning */
+    }
+
+    .main-content {
+        margin-left: 0; /* Remove left margin for full width */
+        padding: 20px; /* Maintain padding for spacing */
+    }
+
+    /* Navbar adjustments */
+    .navbar-nav {
+        display: flex;
+        flex-wrap: wrap; /* Allow buttons to wrap if needed */
+        justify-content: space-around; /* Spread buttons evenly */
+        padding: 1px 0; /* Add vertical padding */
+    }
+
+    .navbar-nav .nav-link {
+        padding: 8px 10px; /* Reduce padding for smaller buttons */
+        font-size: 0.85rem; /* Slightly smaller font size */
+        margin: 5px; /* Add spacing between buttons */
+        text-align: center; /* Center the text */
+        border: 1px solid transparent; /* Optional: subtle button styling */
+    }
+
+    .navbar-brand {
+        margin-bottom: 10px; /* Add space under the brand logo */
+        text-align: center; /* Center brand text */
+    }
+}
