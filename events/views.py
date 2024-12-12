@@ -9,7 +9,7 @@ from django.contrib.auth.views import LoginView, PasswordResetView, PasswordRese
 from django.views import View
 from django.views.generic import ListView, UpdateView, TemplateView, DeleteView
 from django.views.generic.edit import FormView
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from django.urls import reverse_lazy, reverse
 from django.utils.timezone import now
 from django.contrib import messages
@@ -550,16 +550,19 @@ class SupportPageView(View):
         form = SupportForm(request.POST)
         if form.is_valid():
             # Get the message from the form
+            from_email = form.cleaned_data['from_email']
             message = form.cleaned_data['message']
 
             # Send email to the support team
-            send_mail(
-                'Support Request',
-                message,
-                settings.DEFAULT_FROM_EMAIL,  # Your from email address
-                [settings.SUPPORT_EMAIL],  # Support email configured in settings.py
-                fail_silently=False,
+            # Create an email message instance
+            email = EmailMessage(
+                subject='Support Request',
+                body=message,
+                from_email=settings.DEFAULT_FROM_EMAIL,  # Use your email as the "From" address
+                to=[settings.SUPPORT_EMAIL],  # Support team's email address
+                headers={'Reply-To': from_email},  # Include the user's email as the "Reply-To"
             )
+            email.send(fail_silently=False)
 
             # Add success message to show confirmation to the user
             messages.success(request, 'Your support request has been sent successfully.')

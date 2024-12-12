@@ -141,6 +141,12 @@ class CustomUserCreationForm(forms.ModelForm):
     
 
 class SupportForm(forms.Form):
+    from_email = forms.EmailField(label="Your Email", required=True,
+                                  widget=forms.EmailInput(attrs={
+                                    'class': 'form-control transparent-textarea',
+                                    'placeholder': 'Email Address',
+                                    'style': 'background-color: transparent'
+                                }))
     message = forms.CharField(
         widget=forms.Textarea(
             attrs={
