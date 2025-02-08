@@ -105,7 +105,10 @@ else:  # Local Development (SQLite)
     }
 
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://eventmanagement.site',  # Replace with your actual domain
+    'https://www.eventmanagement.site'
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
