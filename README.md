@@ -98,9 +98,8 @@ Visit `http://127.0.0.1:8000/admin` and log in with the superuser credentials yo
 ---
 
 ## Deployment
-The application is deployed on an Azure VM running Ubuntu 22.04 LTS server. The deployment setup includes:
-- **Web Server**: Nginx
-- **Application Server**: Gunicorn
+The application will be deployed on Railway.app. The deployment setup includes:
+- **PaaS**: Railway.app
 - **Database**: PostgreSQL
 
 ---
