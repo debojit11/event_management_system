@@ -1,0 +1,307 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #d3bbf0, #bb3ef5); /* Fixed Gradient */
+    position: relative;
+    height: 100%; /* Ensure full height */
+}
+
+/* Top Navigation Bar */
+header {
+    z-index: 10;
+    position: fixed; /* Keep the navbar at the top */
+    width: 100%;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+}
+
+.navbar-nav .nav-link {
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    padding-top: 0px; /* to avoid overlap with the navbar */
+    z-index: 5;
+    display: flex; /* Enable Flexbox */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align links to the top */
+    align-items: flex-start; /* Align links to the left */
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+/* Sidebar links styling */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    padding-top: 200px;
+    margin: 0; /* Remove default margin for cleaner appearance */
+    width: 100%; /* Ensure it spans the full width of the sidebar */
+}
+
+.sidebar ul li {
+    padding: 15px;
+    text-align: left;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #444;
+}
+
+/* Main content */
+.main-content {
+    margin-left: 270px; /* to make room for the sidebar */
+    padding: 40px;
+    background: linear-gradient(135deg, #cdb1f0, #bb3ef5); /* Ensure the gradient continues */
+    flex-grow: 1; /* Allow the main content to grow and take up remaining space */
+    min-height: 100vh; /* Ensure the main content fills the screen */
+    box-sizing: border-box; /* Include padding in height calculation */
+    padding-top: 80px; /* Ensure the content is not hidden behind the navbar */
+}
+
+/* Header content spacing */
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+/* Hover effect for Sign In/Sign Up and Support buttons */
+.sign-in-sign-up, .support-btn, .profile, .logout {
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sign-in-sign-up:hover, .support-btn:hover, .profile:hover, .logout:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Fix for the navbar to stay fixed above content */
+header nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+}
+
+/* Optional styling for the sidebar links to look cleaner */
+.sidebar ul li a {
+    padding: 15px;
+    font-size: 1.1em;
+}
+.transparent-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Placeholder text with semi-transparency */
+}
+
+.transparent-textarea:focus {
+    border-color: #00bcd4; /* Change border color on focus */
+    box-shadow: 0 0 5px #00bcd4; /* Add glow effect */
+}
+.transparent-field {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.transparent-field:focus {
+    border-color: #00bcd4; /* Highlight color on focus */
+    box-shadow: 0 0 5px #00bcd4;
+}
+.btn-link-style {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-link-style:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    text-decoration: none;
+}
+.card {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.card-body {
+    background-color: transparent;
+    color: white;
+    padding: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.form-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.transparent-textarea {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    height: 50px; /* Adjustable height */
+    resize: none;
+    font-size: 1rem;
+}
+.transparent-field,
+.transparent-textarea {
+    width: 100%; /* Full width for all fields */
+    max-width: none; /* Ensure no maximum width limit */
+}
+/* For autofilled fields in Chrome and other Webkit browsers */
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+    background-color: transparent !important;  /* Force transparent background */
+    color: white !important;  /* Ensure text remains white */
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;  /* Remove box shadow */
+    box-shadow: 0 0 0px 1000px transparent inset !important;  /* Remove box shadow */
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;  /* Retain custom border */
+}
+
+/* For autofilled fields on focus (Chrome) */
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus {
+    background-color: transparent !important;
+    color: white !important;
+    border-color: #00bcd4 !important;  /* Highlight border on focus */
+    box-shadow: 0 0 5px #00bcd4 !important;  /* Focus box-shadow */
+}
+
+/* Firefox Autofill */
+input:-moz-autofill,
+textarea:-moz-autofill {
+    background-color: transparent !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+}
+
+/* General focus effect for all input and textarea */
+input:focus,
+textarea:focus {
+    background-color: transparent !important;
+    color: white !important;
+    border: 1px solid #00bcd4;
+    box-shadow: 0 0 5px #00bcd4;
+}
+/* Button group styling */
+.button-group {
+    display: flex;
+    justify-content: space-between;  /* Ensures buttons are spread out evenly */
+    gap: 10px;  /* Adds space between the buttons */
+}
+
+/* Buttons styling inside the form */
+.button-group button {
+    flex: 1;  /* Ensures buttons are the same width and stretch evenly */
+    padding: 10px 20px;
+    border: none;  /* Removes default border */
+    background-color: transparent;  /* Makes the button background transparent */
+    color: white;  /* White text color */
+    font-size: 1.1em;  /* Larger text size */
+    transition: background-color 0.3s ease, color 0.3s ease;  /* Smooth hover effect */
+}
+
+/* Button hover effect */
+.button-group button:hover {
+    background-color: white;  /* Changes background to white when hovered */
+    color: black;  /* Changes text color to black */
+}
+#id_description{
+    background-color: transparent;
+}
+@media (max-width: 768px) {
+    /* Sidebar adjustments */
+    .sidebar {
+        width: 100%; /* Full width on smaller screens */
+        position: relative; /* Ensure proper positioning */
+    }
+
+    .main-content {
+        margin-left: 0; /* Remove left margin for full width */
+        padding: 20px; /* Maintain padding for spacing */
+    }
+
+    /* Navbar adjustments */
+    .navbar-nav {
+        display: flex;
+        flex-wrap: wrap; /* Allow buttons to wrap if needed */
+        justify-content: space-around; /* Spread buttons evenly */
+        padding: 1px 0; /* Add vertical padding */
+    }
+
+    .navbar-nav .nav-link {
+        padding: 8px 10px; /* Reduce padding for smaller buttons */
+        font-size: 0.85rem; /* Slightly smaller font size */
+        margin: 5px; /* Add spacing between buttons */
+        text-align: center; /* Center the text */
+        border: 1px solid transparent; /* Optional: subtle button styling */
+    }
+
+    .navbar-brand {
+        margin-bottom: 10px; /* Add space under the brand logo */
+        text-align: center; /* Center brand text */
+    }
+}
