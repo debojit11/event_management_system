@@ -26,9 +26,9 @@ environ.Env.read_env()  # Reads .env file
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["eventmanagement.site", "www.eventmanagement.site"]
+ALLOWED_HOSTS = ["eventmanagement.site", "www.eventmanagement.site", "127.0.0.1"]
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'widget_tweaks',
     'whitenoise.runserver_nostatic',
+    "captcha",
     # Your apps
     'events',
     'api',

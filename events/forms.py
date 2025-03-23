@@ -2,6 +2,7 @@ from django import forms
 from .models import Event, Ticket
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from captcha.fields import CaptchaField
 
 class EventForm(forms.ModelForm):
 
@@ -109,6 +110,7 @@ class CustomUserCreationForm(forms.ModelForm):
         }),
         min_length=8
     )
+    captcha = CaptchaField()
 
     class Meta:
         model = User
