@@ -8,7 +8,6 @@ urlpatterns = [
     path('logout/', views.CustomLogoutView.as_view(), name='logout'),
     path('login/', views.CustomLoginView.as_view(), name='login'),
     path('signup/', views.SignupView.as_view(), name='signup'),
-    path("captcha/", include("captcha.urls")),
     # Profile Page
     path('profile/', views.ProfileView.as_view(), name='profile'),
 

@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ["eventmanagement.site", "www.eventmanagement.site", "127.0.0.1"
 # Application definition
 
 INSTALLED_APPS = [
+    'django_recaptcha',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,7 +48,6 @@ INSTALLED_APPS = [
     'django_extensions',
     'widget_tweaks',
     'whitenoise.runserver_nostatic',
-    "captcha",
     # Your apps
     'events',
     'api',
@@ -156,6 +156,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
+SILENCED_SYSTEM_CHECKS = ["captcha.recaptcha_test_key_error"]
 
 
 RAZORPAY_KEY_ID = env('RAZORPAY_KEY_ID')  # Replace with your Razorpay Key ID
