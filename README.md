@@ -1,6 +1,7 @@
 # Event Management System
 
 [Live Site](https://eventmanagement.site/)
+[Click here if the baove isn't working](https://event-management-system-p9zl.onrender.com)
 
 ## Overview
 The **Event Management System** simplifies the organization and attendance of events, conferences, and gatherings. Designed for both organizers and attendees, it includes features for event creation, ticketing, and scheduling.
