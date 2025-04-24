@@ -28,7 +28,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["eventmanagement.site", "www.eventmanagement.site", "127.0.0.1", "https://event-management-system-p9zl.onrender.com"]
+ALLOWED_HOSTS = ["eventmanagement.site", "www.eventmanagement.site", "127.0.0.1", "event-management-system-p9zl.onrender.com"]
 
 
 # Application definition
