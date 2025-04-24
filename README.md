@@ -99,7 +99,7 @@ Visit `http://127.0.0.1:8000/admin` and log in with the superuser credentials yo
 
 ## Deployment
 The application will be deployed on Railway.app. The deployment setup includes:
-- **PaaS**: Railway.app
+- **PaaS**: Render
 - **Database**: PostgreSQL
 
 ---

@@ -108,7 +108,8 @@ else:  # Local Development (SQLite)
 
 CSRF_TRUSTED_ORIGINS = [
     'https://eventmanagement.site',  # Replace with your actual domain
-    'https://www.eventmanagement.site'
+    'https://www.eventmanagement.site',
+    'https://event-management-system-p9zl.onrender.com'
 ]
 
 # Password validation
